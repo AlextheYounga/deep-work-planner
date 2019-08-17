@@ -1,0 +1,10 @@
+@font-face {
+  font-family: HelveticaNeue;
+  src: url('<%= asset_path ("HelveticaNeue-ThinItalic.otf") %>');
+  font-display: swap;
+}
+
+.helvetica {
+  font-family: HelveticaNeue;
+  
+}
