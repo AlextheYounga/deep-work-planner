@@ -9,6 +9,10 @@
         {
             "name": "release/08-17-19",
             "base": "develop"
+        },
+        {
+            "name": "release/08-17-19",
+            "base": "develop"
         }
     ]
 }
