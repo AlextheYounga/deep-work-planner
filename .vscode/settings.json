@@ -4,5 +4,11 @@
             "name": "feature/tailwindcss",
             "base": "develop"
         }
+    ],
+    "gitflow4code.releases": [
+        {
+            "name": "release/08-17-19",
+            "base": "develop"
+        }
     ]
 }
