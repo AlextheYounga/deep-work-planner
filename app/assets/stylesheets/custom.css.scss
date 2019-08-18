@@ -1,10 +1,18 @@
-@font-face {
+.helvetica {
   font-family: HelveticaNeue;
-  src: url('<%= asset_path ("HelveticaNeue-ThinItalic.otf") %>');
   font-display: swap;
 }
 
-.helvetica {
-  font-family: HelveticaNeue;
-  
+.task::placeholder {
+  padding-top: 1.5rem;
+}
+
+input, textarea, label {
+  &:focus {
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;    
+  }
 }
