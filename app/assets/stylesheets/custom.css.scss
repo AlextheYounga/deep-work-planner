@@ -7,12 +7,51 @@
   padding-top: 1.5rem;
 }
 
-input, textarea, label {
+input,
+textarea,
+label {
   &:focus {
     outline: none;
-
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;    
+    box-shadow: none;
+  }
+}
+
+.add-new-button {
+  &::hover {
+    background-color: #63b3ed;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;    
+  }
+}
+
+.plus-button {
+  border-radius: 100%;
+
+  &::before,
+  &::after {
+    position: absolute;
+    border-radius: 5px;
+    content: '';
+    width: 50%;
+    height: 10%;
+    top: calc(45%);
+    left: 25%;
+    background-color: white;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+
+  &:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
 }
