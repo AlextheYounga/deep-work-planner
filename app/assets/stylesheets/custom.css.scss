@@ -18,40 +18,70 @@ label {
   }
 }
 
-.add-new-button {
-  &::hover {
-    background-color: #63b3ed;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;    
-  }
-}
+.add-new-button-block {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  background-size: 0 100%;
+  background-image: linear-gradient(to left, #63b3ed, #63b3ed);
+  background-repeat: no-repeat;
+  transition: all 0.5s;
 
-.plus-button {
-  border-radius: 100%;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ffffff;
+    background-image: linear-gradient(to right, #63b3ed, #63b3ed);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 0.5s;
 
-  &::before,
-  &::after {
-    position: absolute;
-    border-radius: 5px;
-    content: '';
-    width: 50%;
-    height: 10%;
-    top: calc(45%);
-    left: 25%;
-    background-color: white;
-  }
-
-  &::after {
-    transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
+    .plus-button {
+      background-color: #63b3ed;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
   }
 
-  &:focus {
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+  .plus-button {
+    border-radius: 100%;
+    background-color: #cbd5e0;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+
+    &::before,
+    &::after {
+      position: absolute;
+      border-radius: 5px;
+      content: '';
+      width: 50%;
+      height: 10%;
+      top: calc(45%);
+      left: 25%;
+      background-color: white;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+    }
+
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: #63b3ed;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      transition: all 1s ease;
+    }
   }
 }
