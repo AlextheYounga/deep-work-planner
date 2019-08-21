@@ -35,7 +35,7 @@ label {
     background-size: 100% 100%;
     transition: all 0.5s;
 
-    .time-block-button {
+    #time-block-button {
       background-color: #63b3ed;
       -webkit-transition: all 0.5s ease;
       -moz-transition: all 0.5s ease;
@@ -44,7 +44,7 @@ label {
     }
   }
 
-  .time-block-button {
+  #time-block-button {
     border-radius: 100%;
     background-color: #cbd5e0;
     -webkit-transition: all 1.2s ease;
