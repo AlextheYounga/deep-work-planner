@@ -2,6 +2,34 @@ var current_time = moment().format('h:mm a');
 var am_pm = moment().format('a');
 
 $(document).ready(function () {
+    //Time Block Mechanics
+    
+    $('#time-block .time-last-init').attr("placeholder", "XX:XX " + am_pm + "");
+
+    var time_block = '<div class="border-blue-400 border-l-2 my-12" id="time-block">' +
+        '<div class="pl-2">' +
+        '<input type="text" name="time-start" id="time-start" placeholder="" class="font-thin"></input>' +
+        '</div>' +
+        '<div class="pl-4 py-4">' +
+        '<textarea placeholder="Task at hand" rows="3" class="task helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' +
+        '</div>' +
+        '<div class="pl-2">' +
+        '<input type="text" name="time-last" id="time-last" placeholder="XX:XX ' + am_pm + '" class="font-thin"></input>' +
+        '</div>' +
+        '</div>';
+
+    $(".add-time-block").on("click", "#time-block-button", function () {
+        time_block_last = $('#time-column .time-block-last').val();
+        $('#time-column').append(time_block);
+        if (time_block_last != '') {
+            $('#time-block #time-start').last().val('' + time_block_last + '');
+        } else {
+            $('#time-block #time-start').last().attr("placeholder", "XX:XX " + am_pm + "");
+        }
+        $('#time-column #time-last').removeClass('time-block-last');
+        $('#time-column #time-last').last().addClass('time-block-last');
+    });
+
     //Math functions for time and automatically inserting colon
     $('#time-start , #time-last').keydown(function (e) {
         if (e.ctrlKey || e.metaKey) {
@@ -65,41 +93,5 @@ $(document).ready(function () {
         $this.val(r);
     });
     //End math functions
-
-    //Time Block Mechanics
-    $('#time-block .time-init').val('' + current_time + '');
-    $('#time-block .time-last-init').attr("placeholder", "XX:XX " + am_pm + "");
-
-    var time_block = '<div class="border-blue-400 border-l-2 my-12" id="time-block">' +
-        '<div class="pl-2">' +
-        '<input type="text" name="time-start" id="time-start" placeholder="" class="font-thin"></input>' +
-        '</div>' +
-        '<div class="pl-4 py-4">' +
-        '<textarea placeholder="Task at hand" rows="3" class="task helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' +
-        '</div>' +
-        '<div class="pl-2">' +
-        '<input type="text" name="time-last" id="time-last" placeholder="XX:XX ' + am_pm + '" class="font-thin"></input>' +
-        '</div>' +
-        '</div>';
-
-    $(".add-time-block").on("click", "#time-block-button", function () {
-        $('#time-column').append(time_block);
-        console.log();
-        // time_block_last = $('#time-column #time-last:nth-last-child(2)').val();
-        time_block_last = $('#time-column input[name="time-last"]').val();
-        // time_block_end = (time_block_last).val();
-
-        time_block_end = $('#time-column #time-last').last().val(); 
-
-
-        if (time_block_end != '') {
-            $('#time-block #time-start').last().val('' + time_block_end + '');
-        } else {
-            $('#time-block #time-start').last().attr("placeholder", "XX:XX " + am_pm + "");
-        }
-
-    });
-
-
 });
 
