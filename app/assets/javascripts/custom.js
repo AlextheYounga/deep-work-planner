@@ -1,9 +1,53 @@
 var current_time = moment().format('h:mm a');
 var am_pm = moment().format('a');
+var timeoutId;
+
+//Autosaving Functions
+var timeoutId;
+$('form input, form textarea').on('input propertychange change', function () {
+    console.log('Textarea Change');
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+        // Runs 1 second (1000 ms) after the last change    
+        saveToDB();
+    }, 1000);
+});
+
+function saveToDB() {
+    console.log('Saving to the db');
+    form = $('#time-sheet');
+    event.preventDefault();
+    $.ajax({
+        async: false,
+        type: "POST",
+        dataType: 'html',
+        data: form.serialize(),
+        url: "/portal_submit",
+        beforeSend: function (xhr) {
+            // Let them know we are saving
+            $('.form-status').html('Saving...');
+        },
+        success: function (data) {
+            var jqObj = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html()
+            // Now show them we saved and when we did
+            var d = new Date();
+            $('.form-status').html('Saved! Last: ' + d.toLocaleTimeString());
+        }
+    });
+}
+
+// This is just so we don't go anywhere  
+// and still save if you submit the form
+$('.contact-form').submit(function (e) {
+    saveToDB();
+    e.preventDefault();
+});
+//End Autosaving Functions
 
 $(document).ready(function () {
     //Time Block Mechanics
-    
+    $('#time-block .time-init').val('' + current_time + '');
     $('#time-block .time-last-init').attr("placeholder", "XX:XX " + am_pm + "");
 
     var time_block = '<div class="border-blue-400 border-l-2 my-12" id="time-block">' +
