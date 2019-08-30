@@ -61,7 +61,7 @@ $(document).ready(function () {
         '</div>' +
         '</div>';
 
-    $("#add-time-block").on("click", function () {
+    $("#add-block-button").on("click", function () {
         time_block_last = $('#time-column .time-block-last').val();
         $('#time-column').append(time_block);
         if (time_block_last != '') {
