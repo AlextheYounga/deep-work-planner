@@ -1,22 +1,21 @@
 var current_time = moment().format('h:mm a');
 var am_pm = moment().format('a');
-var timeoutId;
 
 //Autosaving Functions
 var timeoutId;
-$('form input, form textarea').on('input propertychange change', function () {
-    console.log('Textarea Change');
+// $('form input, form textarea').on('input propertychange change', function () {
+//     console.log('Textarea Change');
 
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(function () {
-        // Runs 1 second (1000 ms) after the last change    
-        saveToDB();
-    }, 1000);
-});
+//     clearTimeout(timeoutId);
+//     timeoutId = setTimeout(function () {
+//         // Runs 1 second (1000 ms) after the last change    
+//         saveToDB();
+//     }, 1000);
+// });
 
 function saveToDB() {
     console.log('Saving to the db');
-    form = $('#time-sheet');
+    form = $('#timesheet');
     event.preventDefault();
     $.ajax({
         async: false,
@@ -62,7 +61,7 @@ $(document).ready(function () {
         '</div>' +
         '</div>';
 
-    $(".add-time-block").on("click", "#time-block-button", function () {
+    $("#add-time-block").on("click", function () {
         time_block_last = $('#time-column .time-block-last').val();
         $('#time-column').append(time_block);
         if (time_block_last != '') {
@@ -73,6 +72,7 @@ $(document).ready(function () {
         $('#time-column #time-last').removeClass('time-block-last');
         $('#time-column #time-last').last().addClass('time-block-last');
     });
+    //end Time Block Mechanics
 
     //Math functions for time and automatically inserting colon
     $('#time-start , #time-last').keydown(function (e) {
@@ -136,6 +136,6 @@ $(document).ready(function () {
 
         $this.val(r);
     });
-    //End math functions
+    //End math functions  
 });
 

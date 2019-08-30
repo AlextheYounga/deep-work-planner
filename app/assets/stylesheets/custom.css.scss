@@ -9,26 +9,27 @@
 
 input,
 textarea,
-label {
+label, 
+button {
   &:focus {
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
   }
 }
 
-.add-time-block {
+#add-time-block {
   background-color: transparent;
   border-radius: 1rem;
+  margin-left: 2rem;
   background-size: 0 100%;
   background-image: linear-gradient(to left, #63b3ed, #63b3ed);
   background-repeat: no-repeat;
   transition: all 0.5s;
 
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover {
+    margin-left: 0;
     color: #ffffff;
     background-image: linear-gradient(to right, #63b3ed, #63b3ed);
     background-repeat: no-repeat;
@@ -87,7 +88,7 @@ label {
 }
 
 @media (max-width: 768px) {
-  .add-time-block {
+  #add-time-block {
     background-color: transparent;
     background-color: #cbd5e0;
   }
