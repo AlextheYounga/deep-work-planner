@@ -9,7 +9,7 @@
 
 input,
 textarea,
-label, 
+label,
 button {
   &:focus {
     outline: none !important;
@@ -18,7 +18,6 @@ button {
     box-shadow: none !important;
   }
 }
-
 
 //Button Mechanics
 #add-block-button {
@@ -59,7 +58,7 @@ button {
     &::after {
       position: absolute;
       border-radius: 5px;
-      content: '';
+      content: "";
       width: 50%;
       height: 10%;
       top: calc(45%);
@@ -89,14 +88,27 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   #add-block-button {
     background-color: transparent;
-    background-color: #cbd5e0;
+    margin-left: 2rem;
 
+    &:hover {
+      margin-left: 2rem;
+      background-image: none;
+      // transition: none;
+    }
     #plus-sign {
-      
+      background-color: #63b3ed;
+
+      &:hover {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
     }
   }
 }
+
 //End Button Mechanics
