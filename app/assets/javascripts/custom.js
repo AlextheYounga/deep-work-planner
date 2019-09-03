@@ -3,33 +3,32 @@ var am_pm = moment().format('a');
 
 //Autosaving Functions
 var timeoutId;
-// $('form input, form textarea').on('input propertychange change', function () {
-//     console.log('Textarea Change');
-
-//     clearTimeout(timeoutId);
-//     timeoutId = setTimeout(function () {
-//         // Runs 1 second (1000 ms) after the last change    
-//         saveToDB();
-//     }, 1000);
-// });
+$('#timesheet input, #timesheet textarea').on('input propertychange change', function () {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+        // Runs 1 second (1000 ms) after the last change    
+        saveToDB();
+    }, 1000);
+});
 
 function saveToDB() {
     console.log('Saving to the db');
     form = $('#timesheet');
-    event.preventDefault();
+        
     $.ajax({
         async: false,
         type: "POST",
         dataType: 'html',
-        data: form.serialize(),
-        url: "/portal_submit",
+        data: form.html(),
+        url: "/timesheet-auto-save",
         beforeSend: function (xhr) {
             // Let them know we are saving
             $('.form-status').html('Saving...');
         },
         success: function (data) {
-            var jqObj = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html()
+            var form_data = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html()
             // Now show them we saved and when we did
+            console.log(form_data);
             var d = new Date();
             $('.form-status').html('Saved! Last: ' + d.toLocaleTimeString());
         }
@@ -72,6 +71,7 @@ $(document).ready(function () {
         $('.current-column').append(time_block);
         $('.current-column').append(add_block_button);
 
+        //Start next time block with last time from previous block
         if (time_block_last != '') {
             $('#time-block #time-start').last().val('' + time_block_last + '');
         } else {
@@ -101,7 +101,6 @@ $(document).ready(function () {
         $('#time-column #time-last').last().addClass('time-block-last');
 
     });
-
     //end Time Column Mechanics
 
     //Math functions for time and automatically inserting colon
