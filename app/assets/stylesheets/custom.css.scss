@@ -113,6 +113,13 @@ button {
   background-color: transparent;
 
   &:hover {
+  }
+}
+//
 
+#toolbar {
+  background-image: linear-gradient(to right, #63b3ed, #90cdf4);
+  .icon {
+    fill: #f7fafc;
   }
 }
