@@ -2,24 +2,33 @@ var current_time = moment().format("h:mm");
 var am_pm = moment().format("a");
 
 //Autosaving Functions
-var timeoutId;
-$("#timesheet input, #timesheet textarea").on("input propertychange change", function () {
-  clearTimeout(timeoutId);
-  timeoutId = setTimeout(function () {
-    // Runs 1 second (1000 ms) after the last change
-    saveToDB();
-  }, 1000);
-});
+function autosave() {
+  var timeoutId;
+  $("input, textarea").on("input propertychange change", function () {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function () {
+      // Runs 1 second (1000 ms) after the last change
+      saveToDB();
+    }, 1000);
+  });
+}
 
 function saveToDB() {
   console.log("Saving to the db");
-  form = $("#timesheet");
+  var block_data = [];
+  $("#time-block").each(function(index) {
+    block_data.push({
+      timestart: $("#time-block #time-start").val(),
+      timelast: $("#time-block #time-last").val(),
+      taskbody: $("#time-block #task-body").val()
+    });
+  });
 
   $.ajax({
     async: false,
     type: "POST",
     dataType: "html",
-    data: form.html(),
+    data: block_data,
     url: "/timesheet-auto-save",
     beforeSend: function (xhr) {
       // Let them know we are saving
@@ -34,10 +43,9 @@ function saveToDB() {
     }
   });
 }
-
 // This is just so we don't go anywhere
 // and still save if you submit the form
-$(".contact-form").submit(function (e) {
+$(".save").submit(function (e) {
   saveToDB();
   e.preventDefault();
 });
@@ -45,7 +53,7 @@ $(".contact-form").submit(function (e) {
 
 //function for time formatting on dynamically created elements using cleave.js
 function timeFormatLoop() {
-  document.querySelectorAll("#time-start , #time-last").forEach(e => {
+  document.querySelectorAll("#time-start , #time-last").forEach(function () {
     $("#time-start , #time-last").on("keydown", function (e) {
       if (e.ctrlKey || e.metaKey) {
         return true;
@@ -114,11 +122,13 @@ function timeFormatLoop() {
 $(document).ready(function () {
   //Variables
   timeFormatLoop();
+  autosave();
   var time_column = '<div class="w-1/5 current-column" id="time-column"></div>';
-  var time_block = '<div class="border-blue-400 border-l-2" id="time-block">' + '<div class="pl-2">' + '<input type="text" name="time-start" id="time-start" placeholder="" class="font-thin"></input>' + "</div>" + '<div class="pl-4 py-4">' + '<textarea placeholder="Task at hand" rows="3" class="task helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' + "</div>" + '<div class="pl-2">' + '<input type="text" name="time-last" id="time-last" placeholder="XX:XX" class="font-thin"></input>' + "</div>" + "</div>";
+  var time_block = '<div class="border-blue-400 border-l-2" id="time-block">' + '<div class="pl-2">' + '<input type="text" name="time-start" id="time-start" placeholder="" class="font-thin"></input>' + "</div>" + '<div class="pl-4 py-4">' + '<textarea placeholder="Task at hand" rows="3" class="helvetica italic p-2 tracking-wide font-light text-gray-900" id="task-body"></textarea>' + "</div>" + '<div class="pl-2">' + '<input type="text" name="time-last" id="time-last" placeholder="XX:XX" class="font-thin"></input>' + "</div>" + "</div>";
 
   //Time Block Init
   $("#time-block .time-init").val("" + current_time + "");
+  $("#time-block .time-last-init").attr("placeholder", "XX:XX");
 
   //Time Block Mechanics
   $("#add-block-button").on("click", function () {
@@ -139,6 +149,7 @@ $(document).ready(function () {
     $("#time-column #time-last").last().addClass("time-block-last");
     $("#time-column #time-block").last().addClass("my-12");
     timeFormatLoop();
+    autosave();
   });
   //end Time Block Mechanics
 
@@ -158,6 +169,7 @@ $(document).ready(function () {
     $("#time-column #time-last").removeClass("time-block-last");
     $("#time-column #time-last").last().addClass("time-block-last");
     timeFormatLoop();
+    autosave();
   });
   //end Time Column Mechanics
 });
