@@ -31,7 +31,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'solargraph'
 gem 'jquery-rails'
 gem 'inline_svg'
-gem 'svgeez', '~> 3.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
