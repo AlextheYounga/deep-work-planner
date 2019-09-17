@@ -17,11 +17,12 @@ function saveToDB() {
   console.log("Saving to the db");
   var block_data = [];
 
-  $(".time-block").each(function (index) {
+  $(".time-column").each(function (index) {
     block_data.push({
-      timestart: $(this).find('.time-start').val(),
-      timelast: $(this).find('.time-last').val(),
-      taskbody: $(this).find('.task-body').val()
+      timecolumn: $(this).attr('id').split('-').pop(),
+      timestart: $(this).find('.time-block .time-start').val(),
+      timelast: $(this).find('.time-block .time-last').val(),
+      taskbody: $(this).find('.time-block .task-body').val()
     });
   });
   console.log(block_data);
@@ -126,7 +127,6 @@ $(document).ready(function () {
   //Variables
   timeFormatLoop();
   autosave();
-  var time_column = '<div class="time-column w-1/5 current-column"></div>';
   var time_block = '<div class="time-block border-blue-400 border-l-2">' +
     '<div class="pl-2">' +
     '<input type="text" name="time-start" placeholder="" class="time-start font-thin"></input>' +
@@ -165,7 +165,10 @@ $(document).ready(function () {
   //end Time Block Mechanics
 
   //Time Column Mechanics
+  var i = 1;
   $("#toolbar #schedule-change").on("click", function () {
+    i++;
+    var time_column = '<div class="time-column w-1/5 current-column" id="timecolumn-' + i + '"></div>';
     add_block_button = $("#add-block-button").detach();
     time_block_last = $(".time-column .time-block-last").val();
 

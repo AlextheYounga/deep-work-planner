@@ -10,19 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_013313) do
-
-  create_table "timeblocks", force: :cascade do |t|
-    t.integer "timesheet_id"
-    t.integer "user_id"
-    t.string "timestart"
-    t.text "taskbody"
-    t.string "timelast"
-  end
+ActiveRecord::Schema.define(version: 2019_09_09_011407) do
 
   create_table "timesheets", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.integer "timecolumn"
+    t.string "timestart"
+    t.text "taskbody"
+    t.string "timelast"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "user_id"
