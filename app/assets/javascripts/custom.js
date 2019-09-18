@@ -16,15 +16,15 @@ function autosave() {
 function saveToDB() {
   console.log("Saving to the db");
   var block_data = [];
-
   $(".time-column").each(function (index) {
     block_data.push({
       timecolumn: $(this).attr('id').split('-').pop(),
       timestart: $(this).find('.time-block .time-start').val(),
-      timelast: $(this).find('.time-block .time-last').val(),
-      taskbody: $(this).find('.time-block .task-body').val()
+      taskbody: $(this).find('.time-block .task-body').val(),
+      timelast: $(this).find('.time-block .time-last').val()
     });
   });
+
   console.log(block_data);
 
   $.ajax({
@@ -32,7 +32,7 @@ function saveToDB() {
     type: "POST",
     dataType: "json",
     data: { 
-      timeblock: block_data 
+      timesheet: block_data 
     },
     url: "/timesheet-auto-save",
     beforeSend: function (xhr) {
@@ -40,9 +40,8 @@ function saveToDB() {
       $(".form-status").html("Saving...");
     },
     success: function (data) {
-      var form_data = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html()
-      // Now show them we saved and when we did
       var d = new Date();
+      $(".form-status").html("");
       $(".form-status").html("Saved! Last: " + d.toLocaleTimeString());
     }
   });
@@ -129,11 +128,11 @@ $(document).ready(function () {
   autosave();
   var time_block = '<div class="time-block border-blue-400 border-l-2">' +
     '<div class="pl-2">' +
-    '<input type="text" name="time-start" placeholder="" class="time-start font-thin"></input>' +
+    '<input type="text" name="time-start" id="time-start" placeholder="" class="time-start font-thin"></input>' +
     "</div>" + '<div class="pl-4 py-4">' +
-    '<textarea placeholder="Task at hand" rows="3" class="task-body helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' +
+    '<textarea name="task-body" id="task-body" placeholder="Task at hand" rows="3" class="task-body helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' +
     "</div>" + '<div class="pl-2">' +
-    '<input type="text" name="time-last" placeholder="XX:XX" class="time-last font-thin"></input>' +
+    '<input type="text" name="time-last" id="time-last" placeholder="XX:XX" class="time-last font-thin"></input>' +
     "</div>" +
     "</div>";
 

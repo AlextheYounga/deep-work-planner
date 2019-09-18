@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :timesheets    # One to many association
+  # has_many :timesheets    # One to many association
   before_save { self.email = email.downcase }
   validates :username, presence: true, uniqueness: {case_sensitive: false },
              length: {minimum: 3, maximum: 25}

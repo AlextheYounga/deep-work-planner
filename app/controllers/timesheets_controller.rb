@@ -1,46 +1,37 @@
 class TimesheetsController < ApplicationController
-
   def index
     #@timesheets = Timesheet.all
     @timesheets = Timesheet.order("created_at desc")
   end
 
-
   def new
     @timesheet = Timesheet.new
   end
 
-
   def edit
-
   end
 
   def create
     @timesheet = Timesheet.new(timesheet_params)
-    @timesheet.user = User.last
+    # @timesheet.user = User.last
     if @timesheet.save
-      flash[:notice] = "Article was successfully created"
-      redirect_to article_path(@timesheet)
-    else
-      render 'new'
+      flash[:notice] = "Timesheet was successfully created"
+      puts "success"
+      return success
     end
   end
-
 
   def update
     if @timesheet.update(timesheet_params)
       flash[:notice] = "Timesheet was successfully updated"
       # redirect_to index_path(@timesheet)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
-
   def show
-
   end
-
 
   def destroy
     @timesheet.destroy
@@ -61,6 +52,6 @@ class TimesheetsController < ApplicationController
   end
 
   def timesheet_params
-    params.permit( :timeblock, :timestart, :timelast, :taskbody)
+    params.permit(:title, :description, :timestart, :taskbody, :timelast, :timecolumn)
   end
 end
