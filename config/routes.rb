@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get "concept", to: "pages#concept"
   get "tutorial", to: "pages#tutorial"
 
+  resources :users
+  get 'signup', to: 'users#signup'
+  get 'login', to: 'sessions#login'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+
   resources :timesheets, except: [:signup]
   post "/timesheet-auto-save" => "timesheets#create"
 end
