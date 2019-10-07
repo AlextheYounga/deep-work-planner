@@ -1,8 +1,8 @@
 var current_time = moment().format("h:mm");
 var am_pm = moment().format("a");
 
-//Autosaving Functions
-function autosave() {
+ //Autosaving Functions
+ function autosave() {
   var timeoutId;
   $("input, textarea").on("input propertychange change", function () {
     clearTimeout(timeoutId);
@@ -15,26 +15,22 @@ function autosave() {
 
 function saveToDB() {
   console.log("Saving to the db");
-  var block_data = [];
-  $(".time-column").each(function (index) {
-    block_data.push({
-      timecolumn: $(this).attr('id').split('-').pop(),
-      timestart: $(this).find('.time-block .time-start').val(),
-      taskbody: $(this).find('.time-block .task-body').val(),
-      timelast: $(this).find('.time-block .time-last').val()
-    });
-  });
-
-  console.log(block_data);
+  // var block_data = [];
+  // $(".time-column").each(function (index) {
+  //   block_data.push({
+  //     timecolumn: $(this).attr('id').split('-').pop(),
+  //     timestart: $(this).find('.time-block .time-start').val(),
+  //     taskbody: $(this).find('.time-block .task-body').val(),
+  //     timelast: $(this).find('.time-block .time-last').val()
+  //   });
+  // });
+  console.log($('#timesheet').serialize());
 
   $.ajax({
     async: false,
     type: "POST",
-    dataType: "json",
-    data: { 
-      timesheet: block_data 
-    },
-    url: "/timesheet-auto-save",
+    data: $('#timesheet').serialize(),
+    url: "/timesheets",
     beforeSend: function (xhr) {
       // Let them know we are saving
       $(".form-status").html("Saving...");
