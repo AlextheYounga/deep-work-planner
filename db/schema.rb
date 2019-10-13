@@ -19,17 +19,18 @@ ActiveRecord::Schema.define(version: 2019_09_09_011407) do
     t.string "timestart"
     t.text "taskbody"
     t.string "timelast"
+    t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "user_id"
+    t.index ["user_id"], name: "index_timesheets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
   end
 
 end

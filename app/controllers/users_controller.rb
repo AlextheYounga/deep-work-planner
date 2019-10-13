@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome Alex"
-      redirect_to home_path
+      redirect_to timesheets_path
     else
       render "signup"
     end

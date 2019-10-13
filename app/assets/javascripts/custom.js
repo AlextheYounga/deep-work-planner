@@ -15,15 +15,7 @@ var am_pm = moment().format("a");
 
 function saveToDB() {
   console.log("Saving to the db");
-  // var block_data = [];
-  // $(".time-column").each(function (index) {
-  //   block_data.push({
-  //     timecolumn: $(this).attr('id').split('-').pop(),
-  //     timestart: $(this).find('.time-block .time-start').val(),
-  //     taskbody: $(this).find('.time-block .task-body').val(),
-  //     timelast: $(this).find('.time-block .time-last').val()
-  //   });
-  // });
+
   console.log($('#timesheet').serialize());
 
   $.ajax({

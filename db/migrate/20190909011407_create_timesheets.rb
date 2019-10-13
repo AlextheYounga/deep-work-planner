@@ -7,9 +7,9 @@ class CreateTimesheets < ActiveRecord::Migration[5.2]
       t.string :timestart, :null => true
       t.text :taskbody, :null => true
       t.string :timelast, :null => true
+      t.references :user, foreign_key: true
       t.datetime :created_at
       t.datetime :updated_at
-      t.integer :user_id
     end
   end
 end

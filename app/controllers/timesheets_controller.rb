@@ -1,11 +1,14 @@
 class TimesheetsController < ApplicationController
+  def new
+    @timesheet = Timesheet.new
+  end
+  
   def create
-    # puts params["time-start"]
-
-    @timesheet = Timesheet.new(
+    @timesheet = Timesheet.create(
       timestart: params["time-start"],
       taskbody: params["task-body"],
-      timelast: params["time-last"]
+      timelast: params["time-last"],
+      user_id: current_user.id
     )
     @timesheet.save
   end

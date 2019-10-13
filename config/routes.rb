@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :timesheets, except: [:signup]
+  resources :timesheets, except: [:signup, :show]
   # post "/auto-save" => "timesheets#auto_save"
 end

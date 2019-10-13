@@ -1,7 +1,7 @@
 <section class="container px-4 sm:px-8">
   <span class="form-status float-right text-gray-500 tracking-wide italic"></span>
   <h1 class="font-light helvetica italic px-8 py-8 text-gray-900 text-lg tracking-wide">What are you going to do today?</h1>
-  <form id="timesheet" class="flex" data-remote="true" accept-charset="UTF-8">
+  <%= form_with(@timesheet, :html => {class: "flex", id: "timesheet", role: "form"}, :remote => true)  %>
     <div class="w-1/5 current-column time-column" id="timecolumn-1">
       <div class="border-blue-400 border-l-2 time-block">
         <div class="pl-2">
@@ -19,7 +19,6 @@
         <span class="time-block-text font-light helvetica italic pt-1 text-white tracking-wide w-40">Add New Time Block</span>
       </button>
     </div>
-  </form>
+  <% end %>
 </section>
 <%= render 'partials/toolbar' %>
-
