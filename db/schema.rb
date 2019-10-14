@@ -13,12 +13,9 @@
 ActiveRecord::Schema.define(version: 2019_09_09_011407) do
 
   create_table "timesheets", force: :cascade do |t|
+    t.string "date"
     t.string "title"
-    t.text "description"
-    t.integer "timecolumn"
-    t.string "timestart"
-    t.text "taskbody"
-    t.string "timelast"
+    t.json "timeblock"
     t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,8 +1,8 @@
 var current_time = moment().format("h:mm");
 var am_pm = moment().format("a");
 
- //Autosaving Functions
- function autosave() {
+//Autosaving Functions
+function autosave() {
   var timeoutId;
   $("input, textarea").on("input propertychange change", function () {
     clearTimeout(timeoutId);
@@ -15,19 +15,33 @@ var am_pm = moment().format("a");
 
 function saveToDB() {
   console.log("Saving to the db");
-
-  console.log($('#timesheet').serialize());
-
+  var date = $('#date').text();
+  var timeblock = [];
+  $(".time-block").each(function (index) {
+    timeblock.push({
+      time_start: $(this).find('.time-start').val(),
+      task_body: $(this).find('.task-body').val(),
+      time_last: $(this).find('.time-last').val(),
+    });
+  });
+  console.log(timeblock);
   $.ajax({
     async: false,
     type: "POST",
-    data: $('#timesheet').serialize(),
-    url: "/timesheets",
+    data: {
+      date: date,
+      timeblock: timeblock 
+    },
+    url: "/timesheets/autosave",
     beforeSend: function (xhr) {
       // Let them know we are saving
-      $(".form-status").html("Saving...");
+      $(".form-status").html("Creating and Saving...");
     },
-    success: function (data) {
+    fail: function () {
+      $(".form-status").html("");
+      $(".form-status").html("There was a problem saving...");
+    },
+    success: function () {
       var d = new Date();
       $(".form-status").html("");
       $(".form-status").html("Saved! Last: " + d.toLocaleTimeString());
@@ -114,13 +128,14 @@ $(document).ready(function () {
   //Variables
   timeFormatLoop();
   autosave();
+
   var time_block = '<div class="time-block border-blue-400 border-l-2">' +
     '<div class="pl-2">' +
-    '<input type="text" name="time-start" id="time-start" placeholder="" class="time-start font-thin"></input>' +
+    '<input placeholder="" class="time-start font-thin" type="text" name="timesheet[time_start]" id="timesheet_time_start">' +
     "</div>" + '<div class="pl-4 py-4">' +
-    '<textarea name="task-body" id="task-body" placeholder="Task at hand" rows="3" class="task-body helvetica italic p-2 tracking-wide font-light text-gray-900"></textarea>' +
+    '<textarea placeholder="Task at hand" rows="3" class="task-body helvetica italic p-2 tracking-wide font-light text-gray-900" name="timesheet[task_body]" id="timesheet_task_body"></textarea>' +
     "</div>" + '<div class="pl-2">' +
-    '<input type="text" name="time-last" id="time-last" placeholder="XX:XX" class="time-last font-thin"></input>' +
+    '<input placeholder="XX:XX" class="time-last font-thin" type="text" name="timesheet[time_last]" id="timesheet_time_last">' +
     "</div>" +
     "</div>";
 

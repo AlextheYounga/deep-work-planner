@@ -1,4 +1,5 @@
 class Timesheet < ActiveRecord::Base
   belongs_to :user
-  validates :timestart, presence: true
+  validates :user_id, presence: true
+  validates :date, presence: true, uniqueness: true
 end

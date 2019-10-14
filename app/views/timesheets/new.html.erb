@@ -1,17 +1,18 @@
 <section class="container px-4 sm:px-8">
+<h1 id="date" class="helvetica italic px-8 py-8 text-gray-600 text-3xl tracking-wide"><%= Time.now.strftime("%A, %B %d") %></h1>
   <span class="form-status float-right text-gray-500 tracking-wide italic"></span>
-  <h1 class="font-light helvetica italic px-8 py-8 text-gray-900 text-lg tracking-wide">What are you going to do today?</h1>
-  <form id="timesheet" class="flex" data-remote="true" accept-charset="UTF-8">
+  <h2 class="font-light helvetica italic px-8 pb-8 text-gray-900 text-lg tracking-wide">What are you going to do today?</h2>
+  <form id="timesheet" class="flex" data-remote="true">  
     <div class="w-1/5 current-column time-column" id="timecolumn-1">
       <div class="border-blue-400 border-l-2 time-block">
         <div class="pl-2">
-          <%= text_field_tag "time-start", nil, placeholder: "", class: "time-start time-init font-thin" %>
+          <%= text_field_tag :time_start, nil, placeholder: "", class: "time-start time-init font-thin" %>
         </div>
         <div class="pl-4 py-4">
-          <%= text_area_tag "task-body", nil, placeholder: "Task at hand", rows: 3 ,class: "task-body helvetica italic p-2 tracking-wide font-light text-gray-900" %>
+          <%= text_area_tag :task_body, nil, placeholder: "Task at hand", rows: 3 ,class: "task-body helvetica italic p-2 tracking-wide font-light text-gray-900" %>
         </div>
         <div class="pl-2">
-          <%= text_field_tag "time-last", nil, placeholder: "", class: "time-last time-last-init time-block-last font-thin" %>
+          <%= text_field_tag :time_last, nil, placeholder: "", class: "time-last time-last-init time-block-last font-thin" %>
         </div>
       </div>
       <button class="flex ml-8 mt-8 mb-32 w-48" id="add-block-button">
