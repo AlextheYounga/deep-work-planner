@@ -50,12 +50,6 @@ function saveToDB() {
     }
   });
 }
-// This is just so we don't go anywhere
-// and still save if you submit the form
-$(".save").submit(function (e) {
-  saveToDB();
-  e.preventDefault();
-});
 //End Autosaving Functions
 
 //function for time formatting on dynamically created elements using cleave.js
@@ -146,7 +140,8 @@ $(document).ready(function () {
   $(".time-block .time-last-init").attr("placeholder", "XX:XX");
 
   //Time Block Mechanics
-  $("#add-block-button").on("click", function () {
+  $("#add-block-button").on("click", function (event) {
+    event.preventDefault();
     add_block_button = $("#add-block-button").detach();
     time_block_last = $(".time-column .time-block-last").val();
 
@@ -170,7 +165,8 @@ $(document).ready(function () {
 
   //Time Column Mechanics
   var i = 1;
-  $("#toolbar #schedule-change").on("click", function () {
+  $("#toolbar #schedule-change").on("click", function (event) {
+    event.preventDefault();
     i++;
     var time_column = '<div class="time-column w-1/5 current-column" id="timecolumn-' + i + '"></div>';
     add_block_button = $("#add-block-button").detach();
