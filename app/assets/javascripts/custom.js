@@ -4,7 +4,7 @@ var am_pm = moment().format("a");
 //Autosaving Functions
 function autosave() {
   var timeoutId;
-  $("input, textarea").on("input propertychange change", function () {
+  $("#timesheet input, #timesheet textarea").on("input propertychange change", function () {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(function () {
       // Runs 1 second (1000 ms) after the last change
@@ -16,6 +16,7 @@ function autosave() {
 function saveToDB() {
   console.log("Saving to the db");
   var date = $('#date').text();
+  var uuid = $('.timesheet-uuid').attr('id');
   var timeblock = [];
   $(".time-block").each(function (index) {
     timeblock.push({
@@ -30,6 +31,7 @@ function saveToDB() {
     type: "POST",
     data: {
       date: date,
+      uuid: uuid,
       timeblock: timeblock 
     },
     url: "/timesheets/autosave",

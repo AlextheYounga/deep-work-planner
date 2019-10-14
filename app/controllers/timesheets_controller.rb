@@ -1,3 +1,4 @@
+require 'securerandom'
 class TimesheetsController < ApplicationController
   before_action :set_timesheet, only: [:edit, :destroy]
   before_action :restrict, only: [:new, :edit, :index]
@@ -5,18 +6,14 @@ class TimesheetsController < ApplicationController
 def new
   @timesheet = Timesheet.new(timesheet_params)
   @timesheet.user = User.find(session[:user_id]) if session[:user_id]
-  @timesheet.date = Time.now.strftime("%A, %B %d")
-  if @timesheet.save!
-    render "new"
-    flash[:notice] = "Created New Timesheet"
-  else
-    raise ActiveRecord::Rollback
-  end
+  @timesheet.uuid = SecureRandom.uuid
+  @timesheet.save!
 end
 
 def autosave 
   current_user = User.find(session[:user_id]) if session[:user_id]
-  Timesheet.where(date: params["date"], user_id: current_user).update(
+  Timesheet.where(uuid: params["uuid"], user_id: current_user).update(
+    date: params["date"],
     timeblock: params["timeblock"]
   )
 end

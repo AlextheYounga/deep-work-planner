@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_011407) do
     t.string "title"
     t.json "timeblock"
     t.integer "user_id"
+    t.string "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_timesheets_on_user_id"
