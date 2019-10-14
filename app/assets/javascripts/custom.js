@@ -15,7 +15,6 @@ function autosave() {
 
 function saveToDB() {
   console.log("Saving to the db");
-  var date = $('#date').text();
   var uuid = $('.timesheet-uuid').attr('id');
   var timeblock = [];
   $(".time-block").each(function (index) {
@@ -30,7 +29,6 @@ function saveToDB() {
     async: false,
     type: "POST",
     data: {
-      date: date,
       uuid: uuid,
       timeblock: timeblock 
     },

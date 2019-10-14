@@ -12,11 +12,9 @@ def new
 end
 
 def autosave
-  current_user = User.find(session[:user_id]) if session[:user_id]
-  Timesheet.where(uuid: params["uuid"], user_id: current_user).update(
+  Timesheet.where(uuid: params["uuid"]).update(
     timeblock: params["timeblock"]
   )
-  # byebug
 end
 
 def edit
