@@ -1,25 +1,25 @@
-<h1 class="font-light text-center helvetica italic px-8 py-8 text-gray-800 text-3xl tracking-wide">Deep Work Planner</h1>
+<h1 class="font-light text-center helvetica italic px-8 py-8 text-gray-600 text-3xl tracking-wide">Deep Work Planner</h1>
 
 <a href="<%= new_timesheet_path %>" class="bg-white block border border-red-800 font-thin helvetica hover:bg-red-800 hover:text-red-100 italic mx-auto my-4 no-underline py-3 rounded shadow-lg text-center text-red-800 w-48">
   New Timesheet
 </a>
 
-<% @timesheets.each do |timesheet|%>
-<a href="<%= timesheet_path(timesheet) %>" class="no-underline text-gray-600">
-  <div class="bg-white block border border-gray-200 mx-auto my-8 py-10 rounded shadow hover:shadow-lg sm:w-3/4">
-    <h1 class="fancy-font text-gray-600"><%= timesheet.date %></h1>
-    <small class="block text-gray-600 mx-auto px-6">Created by <%= timesheet.user.username if timesheet.user %>
-      <%= time_ago_in_words(timesheet.created_at) %> ago,
-      Last updated: <%= time_ago_in_words(timesheet.updated_at) %> ago
-    </small>
-    <div class="justify-center mx-auto py-2 sm:flex sm:w-3/4 md:w-1/2">
-      <% if logged_in? %>
-      <%= link_to "Edit", edit_timesheet_path(timesheet), class: "bg-white block border border-green-darker hover:bg-green-darkest hover:text-green-100 mx-auto my-4 no-underline normal-font py-3 rounded shadow-lg text-green-darkest w-48" %>
-      <%= link_to "Destroy", timesheet_path(timesheet), method: :delete,
+<div class="flex flex-wrap">
+  <% @timesheets.each do |timesheet|%>
+  <a href="<%= timesheet_path(timesheet) %>" class="no-underline text-gray-600 text-center">
+    <div class="bg-white block border border-gray-200 hover:shadow-lg mx-8 my-8 py-10 rounded shadow sm:w-1/5">
+      <h1 class="helvetica pb-6 text-gray-600 text-2xl"><%= timesheet.date %></h1>
+      <small class="block text-gray-600 mx-auto px-6">Created by <%= timesheet.user.username if timesheet.user %>
+        <%= time_ago_in_words(timesheet.created_at) %> ago,
+        Last updated: <%= time_ago_in_words(timesheet.updated_at) %> ago
+      </small>
+      <div class="flex justify-center">
+        <%= link_to "Edit", edit_timesheet_path(timesheet), class: "block border border-green-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-green-700 text-xs w-20" %>
+        <%= link_to "Destroy", timesheet_path(timesheet), method: :delete,
                               data: {confirm: "Are you sure you want to delete the timesheet?"},
-                              class: "bg-white block border border-red-darker hover:bg-red-darkest hover:text-red-100 mx-auto my-4 no-underline normal-font py-3 rounded shadow-lg w-48" %>
-      <% end %>
+                              class: "block border border-red-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-red-700 text-xs w-20" %>
+      </div>
     </div>
-  </div>
-</a>
-<% end %>
+  </a>
+  <% end %>
+</div>
