@@ -4,22 +4,8 @@
   New Timesheet
 </a>
 
-<div class="flex flex-wrap">
-  <% @timesheets.each do |timesheet|%>
-  <a href="<%= timesheet_path(timesheet) %>" class="no-underline text-gray-600 text-center">
-    <div class="bg-white block border border-gray-200 hover:shadow-lg mx-8 my-8 py-10 rounded shadow sm:w-1/5">
-      <h1 class="helvetica pb-6 text-gray-600 text-2xl"><%= timesheet.date %></h1>
-      <small class="block text-gray-600 mx-auto px-6">Created by <%= timesheet.user.username if timesheet.user %>
-        <%= time_ago_in_words(timesheet.created_at) %> ago,
-        Last updated: <%= time_ago_in_words(timesheet.updated_at) %> ago
-      </small>
-      <div class="flex justify-center">
-        <%= link_to "Edit", edit_timesheet_path(timesheet), class: "block border border-green-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-green-700 text-xs w-20" %>
-        <%= link_to "Destroy", timesheet_path(timesheet), method: :delete,
-                              data: {confirm: "Are you sure you want to delete the timesheet?"},
-                              class: "block border border-red-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-red-700 text-xs w-20" %>
-      </div>
-    </div>
-  </a>
-  <% end %>
+<div class="px-8 py-16">
+<%= month_calendar partial: 'simple_calendar/month_calendar' do |date| %>
+  <%= date %>
+<% end %>
 </div>
