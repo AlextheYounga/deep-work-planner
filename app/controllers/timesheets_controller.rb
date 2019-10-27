@@ -26,6 +26,9 @@ def index
 end
 
 def destroy
+    @timesheet.destroy
+    flash[:notice] = "Article was successfully obliterated"
+    redirect_to timesheets_path
 end
 
 

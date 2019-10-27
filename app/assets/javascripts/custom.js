@@ -30,7 +30,7 @@ function saveToDB() {
     type: "POST",
     data: {
       uuid: uuid,
-      timeblock: timeblock 
+      timeblock: timeblock
     },
     url: "/timesheets/autosave",
     beforeSend: function (xhr) {
