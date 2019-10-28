@@ -13,9 +13,13 @@ def new
 end
 
 def autosave
-  Timesheet.where(uuid: params["uuid"]).update(
-    timeblock: params["timeblock"]
-  )
+  if (params["timeblock"] != nil)
+    Timesheet.where(uuid: params["uuid"]).update(
+      timeblock: params["timeblock"]
+    )
+  else
+    return
+  end
 end
 
 def edit

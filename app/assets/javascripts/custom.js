@@ -123,7 +123,7 @@ $(document).ready(function () {
   timeFormatLoop();
   autosave();
 
-  var time_block = '<div class="time-block border-blue-400 border-l-2">' +
+  var time_block = '<div class="time-block border-blue-400 border-l-2 my-12">' +
     '<div class="pl-2">' +
     '<input placeholder="" class="time-start font-thin" type="text" name="timesheet[time_start]" id="timesheet_time_start">' +
     "</div>" + '<div class="pl-4 py-4">' +
@@ -133,9 +133,6 @@ $(document).ready(function () {
     "</div>" +
     "</div>";
 
-  //Time Block Init
-  $(".time-block .time-init").val("" + current_time + "");
-  $(".time-block .time-last-init").attr("placeholder", "XX:XX");
 
   //Time Block Mechanics
   $("#add-block-button").on("click", function (event) {
@@ -155,7 +152,6 @@ $(document).ready(function () {
 
     $(".time-column .time-last").removeClass("time-block-last");
     $(".time-column .time-last").last().addClass("time-block-last");
-    $(".time-column .time-block").last().addClass("my-12");
     timeFormatLoop();
     autosave();
   });
