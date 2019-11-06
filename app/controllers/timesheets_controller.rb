@@ -5,16 +5,31 @@ class TimesheetsController < ApplicationController
   before_action :restrict, only: [:new, :edit, :index]
 
 def new
+  today = Time.now.strftime("%A, %B %d")
   @timesheet = Timesheet.new
   @timesheet.user = User.find(session[:user_id]) if session[:user_id]
   @timesheet.date = Time.now.strftime("%A, %B %d")
   @timesheet.uuid = SecureRandom.uuid
-  @timesheet.save!
+
+  
+  if Timesheet.where(:date => today).exists?
+    timesheet_today = Timesheet.find_by(date: today)
+    redirect_to edit_timesheet_path(timesheet_today)
+    flash[:notice] = "Redirected to today's timesheet"
+    return false
+  end
+
+  if @timesheet.save!
+    render "new"
+  else
+    flash[:notice] = "Failed to create new timesheet"
+    raise ActiveRecord::Rollback
+  end
 end
 
 def autosave
   if (params["timeblock"] != nil)
-    Timesheet.where(uuid: params["uuid"]).update(
+    Timesheet.where(uuid: params["uuid"], date: params["date"]).update(
       timeblock: params["timeblock"]
     )
   else
