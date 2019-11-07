@@ -16,6 +16,7 @@ function autosave() {
 function saveToDB() {
   console.log("Saving to the db");
   var uuid = $('.timesheet-uuid').attr('id');
+  var date = $('#date').text();
   var timeblock = [];
   $(".time-block").each(function (index) {
     timeblock.push({
@@ -29,6 +30,7 @@ function saveToDB() {
     async: false,
     type: "POST",
     data: {
+      date: date,
       uuid: uuid,
       timeblock: timeblock
     },
@@ -180,4 +182,9 @@ $(document).ready(function () {
     autosave();
   });
   //end Time Column Mechanics
+
+   if($('.message-success').is(":visible")){
+    $('.message-success').fadeIn('fast').delay(3500).fadeOut('slow');
+    console.log("here");
+   }
 });
