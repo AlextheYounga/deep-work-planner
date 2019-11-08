@@ -5,26 +5,35 @@
 
 <div class="flex flex-wrap">
   <% @timesheets.each do |timesheet|%>
-  <a href="<%= timesheet_path(timesheet) %>" class="no-underline text-gray-600 text-center">
-    <div class="bg-white block border border-gray-200 hover:shadow-lg mx-8 my-8 py-10 rounded shadow sm:w-1/5">
-      <h1 class="helvetica pb-6 text-gray-600 text-2xl" id="date"><%= timesheet.date %></h1>
-      <small class="block text-gray-600 mx-auto px-6">Created by <%= timesheet.user.username if timesheet.user %>
-        <%= time_ago_in_words(timesheet.created_at) %> ago,
-        Last updated: <%= time_ago_in_words(timesheet.updated_at) %> ago
-      </small>
-      <div class="flex justify-center">
-        <%= link_to "Edit", edit_timesheet_path(timesheet), class: "block border border-green-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-green-700 text-xs w-20" %>
-        <%= link_to "Destroy", timesheet_path(timesheet), method: :delete,
-                              data: {confirm: "Are you sure you want to delete the timesheet?"},
-                              class: "block border border-red-600 mx-auto my-4 no-underline py-1 rounded shadow-lg text-center text-red-700 text-xs w-20" %>
+  <a href="<%= edit_timesheet_path(timesheet) %>" class="no-underline text-gray-600">
+    <div class="bg-gray-200 block border hover:shadow-lg m-8 pb-2 px-3 rounded sm:w-1/4">
+      <div class="flex justify-between">
+        <h1 class="helvetica p-2 text-gray-600" id="date"><%= timesheet.date %></h1>
+        <a data-confirm="Are you sure you want to delete the timesheet?" class="z-20" data-method="delete" href="<%= timesheet_path(timesheet) %>">
+          <%= inline_svg "trash.svg", class: 'icon options h-6 w-6 mt-2'%>
+        </a>
+      </div>
+
+      <div class="bg-white rounded shadow">
+        <ul>
+
+            <% timesheet.timeblock.each do |key, value| %>
+              <%# <% if timesheet.timeblock[key]["task_body"] == key.count %>
+                <%# <p>No Tasks Yet</p> %>
+            <%# <% else %>
+              <% next if timesheet.timeblock[key]["task_body"] == "" %>
+              <li class="p-2 text-gray-700"><%= timesheet.timeblock[key]["time_start"] %>: <%= truncate(timesheet.timeblock[key]["task_body"], length: 40) %></li>
+              <%# <% end %>
+            <% end %>
+
+        </ul>
+
+        <small class="flex justify-between mx-auto p-2 text-gray-600">
+          <p><%= timesheet.user.username if timesheet.user %></p>
+          <p><%= time_ago_in_words(timesheet.created_at) %> ago</p>
+        </small>
       </div>
     </div>
   </a>
   <% end %>
 </div>
-
-<!-- <div class="px-8 py-16">
-<%#= month_calendar partial: 'simple_calendar/month_calendar' do |date| %>
-  <%#= date %>
-<%# end %>
-</div> -->

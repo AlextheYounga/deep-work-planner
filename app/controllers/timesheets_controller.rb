@@ -52,7 +52,8 @@ def edit
 end
 
 def index
-  @timesheets = Timesheet.order("created_at desc")
+  # @timesheets = Timesheet.order("created_at desc")
+  @timesheets = Timesheet.all
 end
 
 def destroy
