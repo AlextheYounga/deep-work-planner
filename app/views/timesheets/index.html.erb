@@ -15,17 +15,11 @@
       </div>
 
       <div class="bg-white rounded shadow">
-        <ul>
-
+        <ul class="task-list">
             <% timesheet.timeblock.each do |key, value| %>
-              <%# <% if timesheet.timeblock[key]["task_body"] == key.count %>
-                <%# <p>No Tasks Yet</p> %>
-            <%# <% else %>
               <% next if timesheet.timeblock[key]["task_body"] == "" %>
               <li class="p-2 text-gray-700"><%= timesheet.timeblock[key]["time_start"] %>: <%= truncate(timesheet.timeblock[key]["task_body"], length: 40) %></li>
-              <%# <% end %>
             <% end %>
-
         </ul>
 
         <small class="flex justify-between mx-auto p-2 text-gray-600">
@@ -37,3 +31,18 @@
   </a>
   <% end %>
 </div>
+
+<% content_for :javascripts do %>
+  <script>
+    var i = 0;    
+    $('.task-list').each(function() {          
+      i++;
+      var newID = 'list-'+i;
+      $(this).attr('id',newID);
+
+      if ($('#list-'+ i +' li').length == 0) {
+      $(this).append('<li class="p-2 text-gray-700">No Tasks Yet</li>');
+    }  
+    });
+  </script>
+<% end %>
