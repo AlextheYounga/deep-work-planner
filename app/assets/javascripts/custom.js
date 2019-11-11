@@ -129,7 +129,7 @@ $(document).ready(function () {
     '<div class="pl-2">' +
     '<input placeholder="" class="time-start font-thin" type="text" name="timesheet[time_start]" id="timesheet_time_start">' +
     "</div>" + '<div class="pl-4 py-4">' +
-    '<textarea placeholder="Task at hand" rows="3" class="task-body helvetica italic p-2 tracking-wide font-light text-gray-900" name="timesheet[task_body]" id="timesheet_task_body"></textarea>' +
+    '<textarea placeholder="Task at hand" rows="3" class="task-body gothic-neo italic p-2 tracking-wide font-light text-gray-800" name="timesheet[task_body]" id="timesheet_task_body"></textarea>' +
     "</div>" + '<div class="pl-2">' +
     '<input placeholder="XX:XX" class="time-last font-thin" type="text" name="timesheet[time_last]" id="timesheet_time_last">' +
     "</div>" +

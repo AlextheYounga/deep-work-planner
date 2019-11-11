@@ -1,6 +1,6 @@
 <section class="container px-4 sm:px-8">
   <span class="form-status float-right text-gray-500 tracking-wide italic"></span>
-  <h1 class="font-light helvetica italic px-8 py-8 text-gray-900 text-lg tracking-wide">What are you going to do today?</h1>
+  <h1 class="font-light gothic-neo italic px-8 py-8 text-gray-800 text-lg tracking-wide">What are you going to do today?</h1>
   <%= form_with(@timesheet, :html => {class: "flex", id: "timesheet", role: "form"}, :remote => true)  %>
     <div class="w-1/5 current-column time-column" id="timecolumn-1">
       <div class="border-blue-400 border-l-2 time-block">
@@ -8,7 +8,7 @@
           <%= text_field_tag "time-start", nil, placeholder: "", class: "time-start time-init font-thin" %>
         </div>
         <div class="pl-4 py-4">
-          <%= text_area_tag "task-body", nil, placeholder: "Task at hand", rows: 3 ,class: "task-body helvetica italic p-2 tracking-wide font-light text-gray-900" %>
+          <%= text_area_tag "task-body", nil, placeholder: "Task at hand", rows: 3 ,class: "task-body gothic-neo italic p-2 tracking-wide font-light text-gray-800" %>
         </div>
         <div class="pl-2">
           <%= text_field_tag "time-last", nil, placeholder: "", class: "time-last time-last-init time-block-last font-thin" %>
@@ -16,7 +16,7 @@
       </div>
       <button class="flex ml-8 mt-8 mb-32 w-48" id="add-block-button">
         <div class="bg-gray-400 h-8 relative w-8" id="plus-sign"></div>
-        <span class="time-block-text font-light helvetica italic pt-1 text-white tracking-wide w-40">Add New Time Block</span>
+        <span class="time-block-text font-light gothic-neo italic pt-1 text-white tracking-wide w-40">Add New Time Block</span>
       </button>
     </div>
   <% end %>
