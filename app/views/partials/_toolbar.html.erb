@@ -1,6 +1,12 @@
 <div id="toolbar" class="overflow-hidden fixed bottom-0 w-full z-50">
-    <button id="schedule-change" class="flex hover:bg-blue-600 px-8 py-3">
-        <%= inline_svg "change-schedule.svg", class: 'icon w-8'%>
-        <span class="gothic-neo text-gray-100 text-lg tracking-wide pl-3 pt-1">Schedule Change</span>
-    </button>
+    <div class="flex">
+        <a href="<%= timesheets_path %>" class="flex hover:bg-blue-600 px-8 py-3">
+            <%= inline_svg "index.svg", class: 'icon w-8'%>
+            <span class="gothic-neo text-gray-100 text-lg tracking-wide pl-2 pt-1">Index</span>
+        </a>
+        <button id="schedule-change" class="flex hover:bg-blue-600 px-8 py-3">
+            <%= inline_svg "tracks.svg", class: 'icon w-8'%>
+            <span class="gothic-neo text-gray-100 text-lg tracking-wide pl-2 pt-1">Schedule Change</span>
+        </button>
+    </div>
 </div>

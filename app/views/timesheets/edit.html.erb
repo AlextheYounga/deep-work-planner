@@ -11,22 +11,22 @@
         <% @timesheet.timeblock.each do |key, value| %>
           <div class="border-blue-400 border-l-2 time-block my-12">
             <div class="pl-2">
-              <input value="<%= @timesheet.timeblock[key]["time_start"] %>" class="time-start gothic-neo font-light" type="text" name="timesheet[time_start]" id="timesheet_time_start">
+              <input placeholder="XX:XX" value="<%= @timesheet.timeblock[key]["time_start"] %>" class="time-start gothic-neo font-light" type="text" name="timesheet[time_start]" id="timesheet_time_start">
             </div>
             <div class="pl-4 py-4 gothic-neo">
               <textarea placeholder="Task at hand" rows="3" class="task-body gothic-neo p-2 tracking-wide text-gray-800" name="timesheet[task_body]" id="timesheet_task_body"><%= @timesheet.timeblock[key]["task_body"] %></textarea>
             </div>
             <div class="pl-2">
-              <input value="<%= @timesheet.timeblock[key]["time_last"] %>" class="time-last time-last-init time-block-last gothic-neo font-light" type="text" name="timesheet[time_last]" id="timesheet_time_last">
+              <input placeholder="XX:XX" value="<%= @timesheet.timeblock[key]["time_last"] %>" class="time-last time-last-init time-block-last gothic-neo font-light" type="text" name="timesheet[time_last]" id="timesheet_time_last">
             </div>
           </div>
         <% end %>
       <% else %>
         <%= render 'partials/timeblock' %>
       <% end %>
-      <button class="flex ml-8 mt-8 mb-32 w-48" id="add-block-button">
+      <button class="flex ml-8 mt-8 mb-32 w-48 relative" id="add-block-button">
         <div class="bg-gray-400 h-8 relative w-8" id="plus-sign"></div>
-        <span class="time-block-text gothic-neo pt-1 text-white tracking-wide w-40 text-sm">Add New Time Block</span>
+        <span class="absolute gothic-neo right-0 text-sm text-white tracking-wide w-40" style="top: 15%;">Add New Time Block</span>
       </button>
     </div>
   </form>
