@@ -116,4 +116,9 @@ button {
   .icon {
     fill: #f7fafc;
   }
+
+  @media (max-width: 568px) {
+    display: none;
+  }
+
 }

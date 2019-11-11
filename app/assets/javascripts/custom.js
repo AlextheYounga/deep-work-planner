@@ -164,7 +164,7 @@ $(document).ready(function () {
   $("#toolbar #schedule-change").on("click", function (event) {
     event.preventDefault();
     i++;
-    var time_column = '<div class="time-column w-1/5 current-column" id="timecolumn-' + i + '"></div>';
+    var time_column = '<div class="time-column sm:w-1/3 current-column" id="timecolumn-' + i + '"></div>';
     add_block_button = $("#add-block-button").detach();
     time_block_last = $(".time-column .time-block-last").val();
 
