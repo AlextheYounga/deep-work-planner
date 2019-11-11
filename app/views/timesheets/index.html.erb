@@ -5,23 +5,21 @@
 
 <div class="flex flex-wrap">
   <% @timesheets.each do |timesheet|%>
-  <a href="<%= edit_timesheet_path(timesheet) %>" class="no-underline text-gray-600 gothic-neo">
-    <div class="bg-gray-200 block border hover:shadow-lg m-8 pb-2 px-3 rounded sm:w-1/4">
+  <a href="<%= edit_timesheet_path(timesheet) %>" class="no-underline gothic-neo">
+    <div class="bg-gray-200 block border hover:shadow-lg m-8 pb-8 px-3 rounded sm:w-1/5 relative">
       <div class="flex justify-between">
         <h1 class="gothic-neo p-2 text-gray-600" id="date"><%= timesheet.date %></h1>
         <a data-confirm="Are you sure you want to delete the timesheet?" class="z-20" data-method="delete" href="<%= timesheet_path(timesheet) %>">
           <%= inline_svg "trash.svg", class: 'icon options h-6 w-6 mt-2'%>
         </a>
       </div>
-
-      <div class="bg-white rounded shadow">
-        <ul class="task-list">
-            <% timesheet.timeblock.each do |key, value| %>
-              <% next if timesheet.timeblock[key]["task_body"] == "" %>
-              <li class="p-2 text-gray-700 gothic-neo"><%= timesheet.timeblock[key]["time_start"] %>: <%= truncate(timesheet.timeblock[key]["task_body"], length: 40) %></li>
-            <% end %>
-        </ul>
-
+      <ul class="task-list">
+        <% timesheet.timeblock.each do |key, value| %>
+          <% next if timesheet.timeblock[key]["task_body"] == "" %>
+          <li class="p-2 text-gray-700 gothic-neo bg-white rounded shadow my-1"><%= timesheet.timeblock[key]["time_start"] %>: <%= truncate(timesheet.timeblock[key]["task_body"], length: 60) %></li>
+        <% end %>
+      </ul>
+      <div class="absolute bottom-0 w-11/12">
         <small class="flex justify-between mx-auto p-2 text-gray-600">
           <p><%= timesheet.user.username if timesheet.user %></p>
           <p><%= time_ago_in_words(timesheet.created_at) %> ago</p>
@@ -33,16 +31,16 @@
 </div>
 
 <% content_for :javascripts do %>
-  <script>
-    var i = 0;    
-    $('.task-list').each(function() {          
-      i++;
-      var newID = 'list-'+i;
-      $(this).attr('id',newID);
+<script>
+  var i = 0;
+  $('.task-list').each(function () {
+    i++;
+    var newID = 'list-' + i;
+    $(this).attr('id', newID);
 
-      if ($('#list-'+ i +' li').length == 0) {
-      $(this).append('<li class="p-2 text-gray-700 gothic-neo">No Tasks Yet</li>');
-    }  
-    });
-  </script>
+    if ($('#list-' + i + ' li').length == 0) {
+      $(this).append('<li class="p-2 text-gray-700 gothic-neo bg-white rounded shadow my-1">No Tasks Yet</li>');
+    }
+  });
+</script>
 <% end %>
