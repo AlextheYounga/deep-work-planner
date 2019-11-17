@@ -125,7 +125,7 @@ $(document).ready(function () {
   timeFormatLoop();
   autosave();
 
-  var time_block = '<div class="time-block border-blue-400 border-l-2 my-12">' +
+  var time_block = '<div class="time-block border-blue-400 border-l-2 my-12 shadow rounded">' +
     '<div class="pl-2">' +
     '<input placeholder="" class="time-start gothic-neo font-light" type="text" name="timesheet[time_start]" id="timesheet_time_start">' +
     "</div>" + '<div class="pl-4 py-4">' +
