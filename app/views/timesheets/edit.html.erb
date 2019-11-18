@@ -13,7 +13,7 @@
     <div class="sm:w-1/3 current-column time-column" id="timecolumn-1">
       <% if @timesheet.timeblock != nil %>
         <% @timesheet.timeblock.each do |key, value| %>
-          <div class="border-blue-400 border-l-2 time-block my-12 w-11/12 shadow rounded">
+          <div class="border-blue-400 border-l-2 time-block my-12 w-11/12 rounded">
             <div class="pl-2">
               <input placeholder="XX:XX" value="<%= @timesheet.timeblock[key]["time_start"] %>" class="time-start gothic-neo font-light" type="text" name="timesheet[time_start]" id="timesheet_time_start">
             </div>
@@ -21,7 +21,7 @@
               <textarea placeholder="Task at hand" rows="3" cols="35" class="task-body gothic-neo p-2 tracking-wide text-gray-800" name="timesheet[task_body]" id="timesheet_task_body"><%= @timesheet.timeblock[key]["task_body"] %></textarea>
             </div>
             <div class="pl-2">
-              <input placeholder="XX:XX" value="<%= @timesheet.timeblock[key]["time_last"] %>" class="time-last time-last-init time-block-last gothic-neo font-light" type="text" name="timesheet[time_last]" id="timesheet_time_last">
+              <input placeholder="XX:XX" value="<%= @timesheet.timeblock[key]["time_last"] %>" class="time-last time-last-init last-time gothic-neo font-light" type="text" name="timesheet[time_last]" id="timesheet_time_last">
             </div>
           </div>
         <% end %>

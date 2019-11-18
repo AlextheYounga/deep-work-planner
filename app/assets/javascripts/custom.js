@@ -125,7 +125,7 @@ $(document).ready(function () {
   timeFormatLoop();
   autosave();
 
-  var time_block = '<div class="time-block border-blue-400 border-l-2 my-12 w-11/12 shadow rounded">' +
+  var time_block = '<div class="time-block border-blue-400 border-l-2 my-12 w-11/12 rounded">' +
     '<div class="pl-2">' +
     '<input placeholder="" class="time-start gothic-neo font-light" type="text" name="timesheet[time_start]" id="timesheet_time_start">' +
     "</div>" + '<div class="pl-4 py-4">' +
@@ -136,26 +136,60 @@ $(document).ready(function () {
     "</div>";
 
 
-  //Time Block Mechanics
+  function command(instance) {    
+    this.command = instance;
+    this.done = [];
+  
+    this.execute = function execute() {
+      this.command.execute();
+      this.done.push(this.command);
+    };      
+    this.undo = function undo() {
+      var command = this.done.pop();
+      command.undo();    
+    };  
+  }
+
+  //Time Block Mechanics  
+    var appendcommand = new command({
+      execute: function(){
+        event.preventDefault();
+          add_block_button = $("#add-block-button").detach();
+          time_block_last = $(".time-column .last-time").val();
+
+          $(".current-column").append(time_block);
+          $(".current-column").append(add_block_button);
+
+          //Start next time block with last time from previous block
+          if (time_block_last != "") {
+            $(".time-block .time-start").last().val("" + time_block_last + "");
+          } else {
+            $(".time-block .time-start").last().attr("placeholder", "XX:XX");
+          }
+
+          $(".time-column .time-last").removeClass("last-time");
+          $(".time-column .time-last").last().addClass("last-time");
+        timeFormatLoop();
+        autosave();
+      },
+      undo: function(){
+        add_block_button = $("#add-block-button").detach();        
+        $('.time-column .time-block:last').remove();
+        $(".time-column .time-last").last().addClass("last-time");
+        $(".current-column").append(add_block_button);
+        timeFormatLoop();
+        autosave();
+      }
+    });
+  // Add Time Block Command
   $("#add-block-button").on("click", function (event) {
+    appendcommand.execute();
+  });
+  
+  //Delete Last TimeBlock
+  $("#toolbar #delete-last").on("click", function (event) {
     event.preventDefault();
-    add_block_button = $("#add-block-button").detach();
-    time_block_last = $(".time-column .time-block-last").val();
-
-    $(".current-column").append(time_block);
-    $(".current-column").append(add_block_button);
-
-    //Start next time block with last time from previous block
-    if (time_block_last != "") {
-      $(".time-block .time-start").last().val("" + time_block_last + "");
-    } else {
-      $(".time-block .time-start").last().attr("placeholder", "XX:XX");
-    }
-
-    $(".time-column .time-last").removeClass("time-block-last");
-    $(".time-column .time-last").last().addClass("time-block-last");
-    timeFormatLoop();
-    autosave();
+      appendcommand.undo();
   });
   //end Time Block Mechanics
 
@@ -166,7 +200,7 @@ $(document).ready(function () {
     i++;
     var time_column = '<div class="time-column sm:w-1/3 current-column" id="timecolumn-' + i + '"></div>';
     add_block_button = $("#add-block-button").detach();
-    time_block_last = $(".time-column .time-block-last").val();
+    time_block_last = $(".time-column .last-time").val();
 
     $("#timesheet .time-column").removeClass("current-column");
     $("#timesheet").append(time_column);
@@ -176,8 +210,8 @@ $(document).ready(function () {
     $(".time-block .time-start").last().val("" + current_time + "");
     $(".time-block .time-last").last().attr("placeholder", "XX:XX");
 
-    $(".time-column .time-last").removeClass("time-block-last");
-    $(".time-column .time-last").last().addClass("time-block-last");
+    $(".time-column .time-last").removeClass("last-time");
+    $(".time-column .time-last").last().addClass("last-time");
     timeFormatLoop();
     autosave();
   });
