@@ -155,7 +155,7 @@ $(document).ready(function () {
       execute: function(){
         event.preventDefault();
           add_block_button = $("#add-block-button").detach();
-          time_block_last = $(".time-column .last-time").val();
+          time_block_last = $(".time-column .last-time-input").val();
 
           $(".current-column").append(time_block);
           $(".current-column").append(add_block_button);
@@ -167,15 +167,15 @@ $(document).ready(function () {
             $(".time-block .time-start").last().attr("placeholder", "XX:XX");
           }
 
-          $(".time-column .time-last").removeClass("last-time");
-          $(".time-column .time-last").last().addClass("last-time");
+          $(".time-column .time-last").removeClass("last-time-input");
+          $(".time-column .time-last").last().addClass("last-time-input");
         timeFormatLoop();
         autosave();
       },
       undo: function(){
         add_block_button = $("#add-block-button").detach();        
         $('.time-column .time-block:last').remove();
-        $(".time-column .time-last").last().addClass("last-time");
+        $(".time-column .time-last").last().addClass("last-time-input");
         $(".current-column").append(add_block_button);
         timeFormatLoop();
         autosave();
@@ -200,7 +200,7 @@ $(document).ready(function () {
     i++;
     var time_column = '<div class="time-column sm:w-1/3 current-column" id="timecolumn-' + i + '"></div>';
     add_block_button = $("#add-block-button").detach();
-    time_block_last = $(".time-column .last-time").val();
+    time_block_last = $(".time-column .last-time-input").val();
 
     $("#timesheet .time-column").removeClass("current-column");
     $("#timesheet").append(time_column);
@@ -210,8 +210,8 @@ $(document).ready(function () {
     $(".time-block .time-start").last().val("" + current_time + "");
     $(".time-block .time-last").last().attr("placeholder", "XX:XX");
 
-    $(".time-column .time-last").removeClass("last-time");
-    $(".time-column .time-last").last().addClass("last-time");
+    $(".time-column .time-last").removeClass("last-time-input");
+    $(".time-column .time-last").last().addClass("last-time-input");
     timeFormatLoop();
     autosave();
   });
