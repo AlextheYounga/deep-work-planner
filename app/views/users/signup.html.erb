@@ -1,9 +1,9 @@
-<h1 class="text-center font-light gothic-neo italic py-16 text-3xl">Sign Up</h1>
+<h1 class="text-center font-light gothic-neo py-16 text-3xl">Sign Up</h1>
 <div class="container mx-auto text-center">
   <%= form_for(@user, :html => {class: "w-full", role: "form"}) do |f| %>
 
     <div class="mb-10">
-    <%= f.label :username, class: "font-light gothic-neo italic" %>
+    <%= f.label :username, class: "font-light gothic-neo" %>
     <div class="mb-10">
       <%= f.text_field :username, placeholder: "Username", autofocus: true, 
           class: "bg-gray-100 appearance-none border-2 border-yellow-offset hover:border-grey-800 rounded-sm py-4 px-6 sm:w-1/2 md:1/4 lg:w-1/4 text-black text-center" %>
@@ -11,7 +11,7 @@
   </div>
 
   <div class="mb-10">
-    <%= f.label :email, class: "font-light gothic-neo italic" %>
+    <%= f.label :email, class: "font-light gothic-neo" %>
     <div class="mb-10">
       <%= f.email_field :email, placeholder: "Email", autofocus: true, 
           class: "bg-gray-100 appearance-none border-2 border-yellow-offset hover:border-grey-800 rounded-sm py-4 px-6 sm:w-1/2 md:1/4 lg:w-1/4 text-black text-center" %>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="mb-10">
-    <%= f.label :password, class: "font-light gothic-neo italic" %>
+    <%= f.label :password, class: "font-light gothic-neo" %>
     <div>
       <%= f.password_field :password, autocomplete: "off", 
         class: "bg-gray-100 appearance-none border-2 border-yellow-offset hover:border-grey-800 rounded-sm py-4 px-6 sm:w-1/2 md:1/4 lg:w-1/4 text-black text-center" %>
@@ -29,7 +29,7 @@
 
   <div class="my-6">
     <%= f.submit "Sign Up", 
-      class: "bg-white block border border-red-800 hover:bg-red-800 text-red-800 hover:text-red-100 mx-auto my-4 no-underline font-light gothic-neo italic py-3 rounded shadow-lg sm:w-1/2 md:1/4 lg:w-1/4" %>
+      class: "bg-white block border border-red-800 hover:bg-red-800 text-red-800 hover:text-red-100 mx-auto my-4 no-underline font-light gothic-neo py-3 rounded shadow-lg sm:w-1/2 md:1/4 lg:w-1/4" %>
   </div>
 
 

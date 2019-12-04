@@ -183,14 +183,18 @@ $(document).ready(function () {
     });
   // Add Time Block Command
   $("#add-block-button").on("click", function (event) {
+    event.preventDefault();
     appendcommand.execute();
   });
   
   //Delete Last TimeBlock
   $("#toolbar #delete-last").on("click", function (event) {
     event.preventDefault();
-      appendcommand.undo();
+    appendcommand.undo();
   });
+
+  //Nuke Sheet
+
   //end Time Block Mechanics
 
   //Time Column Mechanics
