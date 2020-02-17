@@ -1,0 +1,12 @@
+<% flash.each do |name, msg| %>
+  <% if flash[:danger]%>
+    <ul class="absolute bg-red-400 m-4 p-8 rounded shadow text-center text-white top-0 right-0 z-20">                              
+      <li id="error"><%= msg %></li>
+    </ul>
+  
+  <% else %>
+    <ul class="message-success absolute bg-blue-300 m-4 p-8 rounded shadow text-center text-gray-800 top-0 right-0 z-20">                              
+      <li id="success"><%= msg %></li>
+    </ul>
+  <% end %>
+<% end %>

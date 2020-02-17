@@ -1,0 +1,124 @@
+.helvetica {
+  font-family: HelveticaNeue;  
+}
+
+.gothic-neo {
+  font-family: Apple SD Gothic Neo;
+}
+
+.task::placeholder {
+  padding-top: 1.5rem;
+}
+
+input,
+textarea,
+label,
+button {
+  &:focus {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+//Button Mechanics
+#add-block-button {
+  background-color: transparent;
+  border-radius: 1rem;
+  margin-left: 2rem;
+  background-size: 0 100%;
+  background-image: linear-gradient(to left, #63b3ed, #63b3ed);
+  background-repeat: no-repeat;
+  transition: all 0.5s;
+
+  &:hover {
+    margin-left: 0;
+    color: #ffffff;
+    background-image: linear-gradient(to right, #63b3ed, #63b3ed);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 0.5s;
+
+    #plus-sign {
+      background-color: #63b3ed;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+  }
+
+  #plus-sign {
+    border-radius: 100%;
+    background-color: #cbd5e0;
+    -webkit-transition: all 2.2s ease;
+    -moz-transition: all 2.2s ease;
+    -o-transition: all 2.2s ease;
+    transition: all 2.2s ease;
+
+    &::before,
+    &::after {
+      position: absolute;
+      border-radius: 5px;
+      content: "";
+      width: 50%;
+      height: 10%;
+      top: calc(45%);
+      left: 25%;
+      background-color: white;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+    }
+
+    &:focus {
+      outline: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: #63b3ed;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #add-block-button {
+    background-color: transparent;
+    margin-left: 2rem;
+
+    &:hover {
+      margin-left: 2rem;
+      background-image: none;
+      // transition: none;
+    }
+    #plus-sign {
+      background-color: #63b3ed;
+
+      &:hover {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
+    }
+  }
+}
+//End Button Mechanics
+
+#toolbar {
+  background-image: linear-gradient(to right, #63b3ed, #90cdf4);
+  .icon {
+    fill: #f7fafc;
+  }
+
+  @media (max-width: 568px) {
+    display: none;
+  }
+
+}

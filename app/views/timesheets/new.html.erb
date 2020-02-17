@@ -1,0 +1,30 @@
+<%= render 'partials/errors', obj: @timesheet %>
+<section class="timesheet-uuid container px-4 sm:px-10" id="<%= @timesheet.uuid %>">
+  <div class="inline-flex w-full justify-between">
+    <a href="<%= timesheets_path %>" class="flex hover:bg-gray-200 hover:shadow justify-center mt-3 p-3 rounded w-40">
+      <%= inline_svg "index.svg", class: 'icon w-6'%>
+      <span class="gothic-neo pl-2 pt-1 text-gray-800 tracking-wide">Back to Index</span>      
+    </a>
+    <span class="form-status float-right text-gray-500 tracking-wide w-1/3"></span>
+  </div>  
+  <h1 id="date" class="helvetica font-light italic px-8 py-8 text-gray-600 text-3xl tracking-wide w-2/3"><%= @timesheet.date %></h1>
+  <h2 class="helvetica px-8 text-gray-700 text-lg italic font-light tracking-wide">What are you going to do today?</h2>
+  <form id="timesheet" class="flex" data-remote="true">
+    <div class="sm:w-1/3 current-column time-column" id="timecolumn-1">
+      <%= render 'partials/timeblock' %>
+      <button class="flex ml-8 mt-8 mb-32 w-48 relative" id="add-block-button">
+        <div class="bg-gray-400 h-8 relative w-8" id="plus-sign"></div>
+        <span class="absolute gothic-neo right-0 text-sm text-white tracking-wide w-40" style="top: 15%;">Add New Time Block</span>
+      </button>
+    </div>
+  </form>
+</section>
+<%= render 'partials/toolbar' %>
+
+<% content_for :javascripts do %>
+<script>
+  //Time Block Init
+  $(".time-block .time-init").val("" + current_time + "");
+  $(".time-block .time-last-init").attr("placeholder", "XX:XX");
+</script>
+<% end %>

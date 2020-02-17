@@ -1,0 +1,31 @@
+<h1 class="text-center font-light gothic-neo py-16 text-3xl">Log in</h1>
+<div class="container mx-auto text-center">
+  <%= form_for(:session, :html => {class: "w-full", role: "form"}, url: login_path) do |f| %>
+  <div class="mb-10">
+    <%= f.label :email, class: "font-light gothic-neo italic" %>
+    <div class="mb-10">
+      <%= f.email_field :email, placeholder: "Email", autofocus: true, 
+          class: "bg-grey-100 appearance-none border-2 border-yellow-offset hover:border-grey-800 rounded-sm py-4 px-6 sm:w-1/2 md:1/4 lg:w-1/4 text-black text-center" %>
+    </div>
+  </div>
+
+  <div class="mb-10">
+    <%= f.label :password, class: "font-light gothic-neo italic" %>
+    <div>
+      <%= f.password_field :password, autocomplete: "off", 
+        class: "bg-grey-100 appearance-none border-2 border-yellow-offset hover:border-grey-800 rounded-sm py-4 px-6 sm:w-1/2 md:1/4 lg:w-1/4 text-black text-center" %>
+    </div>
+  </div>
+
+
+  <div class="my-6">
+    <%= f.submit "Log in", 
+      class: "bg-white block border border-red-800 hover:bg-red-800 text-red-800 hover:text-red-100 mx-auto my-4 no-underline font-light gothic-neo py-3 rounded shadow-lg sm:w-1/2 md:1/4 lg:w-1/4" %>
+  </div>
+
+
+  <% end %>
+  <div class="font-light gothic-neo my-16">
+    <%= link_to "Create an Account", signup_path, class: "no-underline" %>
+  </div>
+</div>
