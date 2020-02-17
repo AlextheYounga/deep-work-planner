@@ -1,0 +1,16 @@
+<% if obj.errors.any? %>
+<div class="container p-8 w-full bg-red-400">
+  <div class="">
+    <h2 class="text-2xl">
+      <%= pluralize(obj.errors.count, "error") %>
+      prohibited this page from being displayed: 
+    </h2>
+    <div class="">
+      <ul> <% obj.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_053823) do
+ActiveRecord::Schema.define(version: 2019_09_09_011407) do
 
   create_table "timesheets", force: :cascade do |t|
+    t.string "date"
     t.string "title"
-    t.text "body"
-    t.datetime "time_start"
-    t.datetime "created_at"
+    t.json "timeblock"
     t.integer "user_id"
+    t.string "uuid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_timesheets_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

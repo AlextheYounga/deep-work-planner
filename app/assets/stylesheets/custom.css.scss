@@ -1,6 +1,9 @@
 .helvetica {
-  font-family: HelveticaNeue;
-  font-display: swap;
+  font-family: HelveticaNeue;  
+}
+
+.gothic-neo {
+  font-family: Apple SD Gothic Neo;
 }
 
 .task::placeholder {
@@ -113,4 +116,9 @@ button {
   .icon {
     fill: #f7fafc;
   }
+
+  @media (max-width: 568px) {
+    display: none;
+  }
+
 }
