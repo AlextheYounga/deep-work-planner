@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a web app for planning out your day in detail, based on principles from Deep Work by Cal Newport and Getting Things Done by David Allen. 
 
-Things you may want to cover:
+It is still currently a work in progress. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+https://deep-work-planner.herokuapp.com/
